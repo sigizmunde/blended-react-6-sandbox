@@ -1,19 +1,17 @@
 import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './Layout/Layout';
+import Home from './Home/Home';
+import AddForm from './AddForm/AddForm';
 
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: '#010101',
-        backgroundColor: 'var(--back-color-2)',
-      }}
-    >
-      <h1>React App</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/add" element={<AddForm />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 };
