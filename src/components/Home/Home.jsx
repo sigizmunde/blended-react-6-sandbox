@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsers, removeUser, toggleStatus } from 'redux/usersSlice';
+import Avatar from 'react-avatar';
+import { Table, Thead, Button, Status } from './Home.styled';
 
 const Home = () => {
   const users = useSelector(getUsers);
@@ -8,43 +10,45 @@ const Home = () => {
 
   return (
     <div>
-      <table>
-        <thead>
+      <Table>
+        <Thead>
           <tr>
             <th>No</th>
-            <th>Name</th>
             <th>Avatar</th>
+            <th>Name</th>
             <th>Age</th>
             <th>Status</th>
             <th>Option</th>
           </tr>
-        </thead>
+        </Thead>
         <tbody>
           {users.map(({ id, name, avatar, age, isOnline }, index) => {
             return (
               <tr key={id}>
                 <td>{index + 1}</td>
+                <td>
+                  <Avatar name={avatar} size={42} round={true} />
+                </td>
                 <td>{name}</td>
-                <td>{avatar}</td>
                 <td>{age}</td>
                 <td>
-                  <span onClick={() => dispatch(toggleStatus(id))}>
+                  <Status onClick={() => dispatch(toggleStatus(id))}>
                     {isOnline === 'yes' ? 'online' : 'offline'}
-                  </span>
+                  </Status>
                 </td>
                 <td>
-                  <button
+                  <Button
                     type="button"
                     onClick={() => dispatch(removeUser(id))}
                   >
                     delete
-                  </button>
+                  </Button>
                 </td>
               </tr>
             );
           })}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

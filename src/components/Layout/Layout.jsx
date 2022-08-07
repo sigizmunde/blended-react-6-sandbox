@@ -1,20 +1,21 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { FlexUl, Header, NavLinkStyled } from './Layout.styled';
 
 const Layout = () => {
   return (
     <>
-      <header>
+      <Header>
         <nav>
-          <ul>
+          <FlexUl>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLinkStyled to="/">Home</NavLinkStyled>
             </li>
             <li>
-              <NavLink to="/add">Add User</NavLink>
+              <NavLinkStyled to="/add">Add User</NavLinkStyled>
             </li>
-          </ul>
+          </FlexUl>
         </nav>
-      </header>
+      </Header>
       <main>
         <Outlet />
       </main>
