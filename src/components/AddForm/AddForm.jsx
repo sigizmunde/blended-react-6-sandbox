@@ -15,10 +15,10 @@ const AddForm = () => {
     const name = e.target.name;
 
     switch (name) {
-      case name:
+      case 'name':
         setName(value);
         break;
-      case age:
+      case 'age':
         setAge(value);
         break;
       default:
@@ -26,11 +26,17 @@ const AddForm = () => {
     }
   };
 
+  const clearForm = () => {
+    setName('');
+    setAge('');
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
     const isOnline = await getStatus();
     const user = { id: nanoid(), avatar: name, name, age, isOnline };
     dispatch(addUser(user));
+    clearForm();
   };
 
   return (
